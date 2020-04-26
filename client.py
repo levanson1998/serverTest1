@@ -25,11 +25,11 @@ def on_message(data):
 @sio.on('disconnect')
 def on_disconnect():
 	try:
-		sio.connect("http://localhost:8888/")
+		sio.connect("https://supercuteboy.herokuapp.com/")
 	except:
 		print("I'm disconnected")
 
-sio.connect("http://localhost:8888/")
+sio.connect("https://supercuteboy.herokuapp.com/")
 print('my sid is', sio.sid)
 sleep(5)
 
@@ -42,4 +42,3 @@ with open("./image.jpg","rb") as file:
 capturedTime = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 mydict_img = {"Image": "data:image/jpg;base64," + jpg_as_text.decode("utf-8"), "CapTime":capturedTime}
 sio.emit('car-send-img', mydict_img)
-
